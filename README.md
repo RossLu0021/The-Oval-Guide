@@ -5,7 +5,7 @@ The Oval Guide is a comprehensive platform designed to help students navigate th
 ## 🚀 Features
 
 - **Professor Search**: Find professors by name, department, or university.
-- **Class Exploration**: Browse classes and view details including difficulty and ratings.
+- **Class Exploration**: Browse classes and view details, including difficulty and ratings.
 - **Reviews**: Read and write reviews for professors and classes.
 - **Authentication**: Secure user accounts with registration and login functionality.
 - **Responsive Design**: A modern, mobile-friendly interface built with Tailwind CSS.
@@ -82,14 +82,6 @@ Run linting to ensure code quality:
 cd theovalguide-front
 npm run lint
 ```
-
-## 🤝 Contributing
-
-1.  Fork the repository.
-2.  Create a feature branch (`git checkout -b feature/amazing-feature`).
-3.  Commit your changes (`git commit -m 'Add some amazing feature'`).
-4.  Push to the branch (`git push origin feature/amazing-feature`).
-5.  Open a Pull Request.
 
 ## 📚 Documentation
 
