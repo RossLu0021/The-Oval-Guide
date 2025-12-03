@@ -8,6 +8,7 @@ import com.ross.theovalguide.DTOS.auth.UpdatePasswordRequest;
 import com.ross.theovalguide.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
@@ -26,8 +27,11 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class AuthController {
 
-    static final String AUTH_COOKIE_NAME = "oval_session";
-    private static final boolean COOKIE_SECURE = false;
+    @Value("${app.auth.cookie.name:oval_session}")
+    private String authCookieName;
+
+    @Value("${app.auth.cookie.secure:false}")
+    private boolean cookieSecure;
 
     private final AuthService authService;
 
@@ -67,9 +71,9 @@ public class AuthController {
     }
 
     private ResponseCookie buildAuthCookie(String token, Duration ttl) {
-        return ResponseCookie.from(AUTH_COOKIE_NAME, token)
+        return ResponseCookie.from(authCookieName, token)
                 .httpOnly(true)
-                .secure(COOKIE_SECURE)
+                .secure(cookieSecure)
                 .sameSite("Lax")
                 .path("/")
                 .maxAge(ttl)

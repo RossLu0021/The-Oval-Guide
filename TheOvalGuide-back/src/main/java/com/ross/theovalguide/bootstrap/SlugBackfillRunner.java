@@ -7,6 +7,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * Runner that backfills slugs for professors that are missing them.
+ * Runs on application startup.
+ */
 @Component
 @RequiredArgsConstructor
 public class SlugBackfillRunner implements CommandLineRunner {
@@ -16,11 +20,13 @@ public class SlugBackfillRunner implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) {
-        professorRepo.findAll().forEach(p -> {
-            if (p.getSlug() == null || p.getSlug().isBlank()) {
-                p.setSlug(slugs.uniqueProfessorSlug(p.getName()));
-                professorRepo.save(p);
-            }
+        var professors = professorRepo.findBySlugIsNull();
+        if (professors.isEmpty()) {
+            return;
+        }
+        professors.forEach(p -> {
+            p.setSlug(slugs.uniqueProfessorSlug(p.getName()));
+            professorRepo.save(p);
         });
     }
 }

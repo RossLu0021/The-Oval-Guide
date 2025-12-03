@@ -5,10 +5,7 @@ import SearchBox from "@/components/search/SearchBox";
 export default function Home() {
   return (
     <div className="bg-background flex min-h-[100svh] flex-col">
-      <header
-        className="supports-[backdrop-filter]:bg-background/60 sticky top-0 z-30 backdrop-blur"
-        style={{ paddingTop: "max(env(safe-area-inset-top), 0px)" }}
-      >
+      <header className="supports-[backdrop-filter]:bg-background/60 sticky top-0 z-30 pt-[max(env(safe-area-inset-top),0px)] backdrop-blur">
         <div className="mx-auto flex w-full max-w-7xl justify-end px-3 py-3 sm:px-6 sm:py-4 lg:px-8">
           <PreauthNav />
         </div>
